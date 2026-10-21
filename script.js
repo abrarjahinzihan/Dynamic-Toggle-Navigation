@@ -377,6 +377,13 @@
       });
     }
 
+    // Update button accessibility title & label
+    if (DOM.themeToggleBtn) {
+      const isDark = theme === 'dark';
+      DOM.themeToggleBtn.setAttribute('title', isDark ? 'Switch to Light mode' : 'Switch to Dark mode');
+      DOM.themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light mode' : 'Switch to Dark mode');
+    }
+
     logEvent('mutation', 'badge-mutation', `Theme updated to: ${theme.toUpperCase()}`);
     updateStateMonitor();
   }

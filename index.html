@@ -53,6 +53,10 @@
     }
     #site-header.scrolled #navbar {
       height: 3.75rem;
+      border-color: rgba(203, 213, 225, 0.8);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 0 20px rgba(0, 242, 254, 0.1);
+    }
+    html.dark #site-header.scrolled #navbar {
       border-color: rgba(255, 255, 255, 0.2);
       box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 242, 254, 0.15);
     }
@@ -74,7 +78,7 @@
     /* Hamburger to X Morphing Transition */
     #hamburger-btn.is-active .bar-1 {
       transform: translateY(7px) rotate(45deg);
-      background-color: #22d3ee;
+      background-color: #06b6d4;
     }
     #hamburger-btn.is-active .bar-2 {
       opacity: 0;
@@ -82,6 +86,10 @@
     }
     #hamburger-btn.is-active .bar-3 {
       transform: translateY(-7px) rotate(-45deg);
+      background-color: #06b6d4;
+    }
+    html.dark #hamburger-btn.is-active .bar-1,
+    html.dark #hamburger-btn.is-active .bar-3 {
       background-color: #22d3ee;
     }
 
@@ -128,14 +136,43 @@
 
     /* Active Navigation Links */
     .nav-link.active {
+      color: #0f172a;
+      font-weight: 600;
+    }
+    html.dark .nav-link.active {
       color: #ffffff;
       font-weight: 600;
     }
+
     .drawer-link.active {
+      color: #0284c7;
+      font-weight: 600;
+      background-color: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+    }
+    html.dark .drawer-link.active {
       color: #22d3ee;
       font-weight: 600;
       background-color: rgba(6, 182, 212, 0.15);
       border: 1px solid rgba(6, 182, 212, 0.3);
+    }
+
+    /* Mobile Theme Pill Switcher */
+    .pill-option {
+      color: #64748b;
+      transition: all 0.2s ease;
+    }
+    html.dark .pill-option {
+      color: #94a3b8;
+    }
+    .pill-option.active {
+      background: linear-gradient(to right, #06b6d4, #3b82f6);
+      color: #ffffff !important;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+    }
+    html.dark .pill-option.active {
+      color: #020617 !important;
     }
 
     /* Prevent background scroll when drawer is open */
@@ -156,17 +193,17 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen overflow-x-hidden transition-colors duration-300 dark:bg-[#0a0d14] dark:text-slate-100">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen overflow-x-hidden transition-colors duration-300 dark:bg-[#0a0d14] dark:text-slate-100">
 
   <!-- ==============================================
        HEADER & DYNAMIC FLOATING NAVBAR
        ============================================== -->
   <header class="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4 md:py-5 transition-all duration-300" id="site-header">
     <div class="max-w-6xl mx-auto">
-      <nav class="h-16 md:h-18 px-4 md:px-6 flex items-center justify-between rounded-full bg-slate-900/80 dark:bg-slate-950/80 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/40 transition-all duration-300 relative" id="navbar" aria-label="Main Navigation">
+      <nav class="h-16 md:h-18 px-4 md:px-6 flex items-center justify-between rounded-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-2xl dark:shadow-black/40 transition-all duration-300 relative" id="navbar" aria-label="Main Navigation">
         
         <!-- Brand Logo -->
-        <a href="#home" class="inline-flex items-center gap-3 font-display font-bold text-lg md:text-xl text-slate-100 group" id="brand-logo" aria-label="NexusNav Homepage">
+        <a href="#home" class="inline-flex items-center gap-3 font-display font-bold text-lg md:text-xl text-slate-900 dark:text-slate-100 group" id="brand-logo" aria-label="NexusNav Homepage">
           <div class="relative w-9 h-9 flex items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 group-hover:rotate-12 group-hover:scale-105 transition-transform duration-300">
             <svg class="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="16" cy="16" r="14" stroke="url(#logo-grad)" stroke-width="2.5" stroke-dasharray="70 20"/>
@@ -180,29 +217,29 @@
             </svg>
             <span class="absolute inset-0 rounded-xl bg-cyan-400/20 animate-pulse pointer-events-none"></span>
           </div>
-          <span class="tracking-tight">Nexus<span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent font-extrabold">Nav</span></span>
+          <span class="tracking-tight">Nexus<span class="bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent font-extrabold">Nav</span></span>
         </a>
 
         <!-- Desktop Navigation Links & Animated Sliding Pill -->
         <div class="relative hidden md:flex items-center" id="nav-links-wrapper">
           <!-- Hardware-Accelerated Sliding Pill Indicator -->
-          <div class="absolute top-1/2 -translate-y-1/2 left-0 h-9 bg-gradient-to-r from-cyan-500/15 to-blue-500/20 border border-cyan-400/30 rounded-full pointer-events-none opacity-0 shadow-lg shadow-cyan-500/10 z-0 transition-all duration-300 ease-out" id="nav-active-pill" aria-hidden="true"></div>
+          <div class="absolute top-1/2 -translate-y-1/2 left-0 h-9 bg-gradient-to-r from-cyan-500/10 to-blue-500/15 border border-cyan-500/30 dark:from-cyan-500/15 dark:to-blue-500/20 dark:border-cyan-400/30 rounded-full pointer-events-none opacity-0 shadow-md shadow-cyan-500/10 z-0 transition-all duration-300 ease-out" id="nav-active-pill" aria-hidden="true"></div>
 
           <ul class="flex items-center gap-1 relative z-10" id="nav-desktop-links" role="menubar">
             <li role="none">
-              <a href="#home" class="nav-link active inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150" role="menuitem" data-nav="home" id="nav-link-home">
+              <a href="#home" class="nav-link active inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors duration-150" role="menuitem" data-nav="home" id="nav-link-home">
                 <span>Home</span>
               </a>
             </li>
             <li role="none">
-              <a href="#features" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150" role="menuitem" data-nav="features" id="nav-link-features">
+              <a href="#features" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors duration-150" role="menuitem" data-nav="features" id="nav-link-features">
                 <span>Features</span>
               </a>
             </li>
 
             <!-- Dropdown / Submenu Item -->
             <li class="relative" id="nav-dropdown-item" role="none">
-              <button type="button" class="nav-link dropdown-toggle inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150" id="dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-dropdown-menu">
+              <button type="button" class="nav-link dropdown-toggle inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors duration-150" id="dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-dropdown-menu">
                 <span>Modules</span>
                 <svg class="dropdown-chevron w-3.5 h-3.5 transition-transform duration-300" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -210,50 +247,50 @@
               </button>
 
               <!-- Dropdown Menu -->
-              <div class="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 min-w-[270px] p-2 rounded-2xl bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-2xl border border-white/10 shadow-2xl opacity-0 pointer-events-none -translate-y-2 scale-95 transition-all duration-200 z-50" id="desktop-dropdown-menu" role="menu" aria-labelledby="dropdown-btn">
-                <a href="#drawer-demo" class="flex items-center gap-3 p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-150 group" role="menuitem">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+              <div class="absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2 min-w-[270px] p-2 rounded-2xl bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border border-slate-200 dark:border-white/10 shadow-2xl shadow-slate-300/50 dark:shadow-black/60 opacity-0 pointer-events-none -translate-y-2 scale-95 transition-all duration-200 z-50" id="desktop-dropdown-menu" role="menu" aria-labelledby="dropdown-btn">
+                <a href="#drawer-demo" class="flex items-center gap-3 p-2.5 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all duration-150 group" role="menuitem">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 group-hover:scale-110 transition-transform">
                     <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
                   </div>
                   <div class="flex flex-col">
-                    <span class="text-sm font-semibold text-slate-100">Hamburger Drawer</span>
-                    <span class="text-xs text-slate-400">Fluid morphing toggle & drawer</span>
+                    <span class="text-sm font-semibold text-slate-900 dark:text-slate-100">Hamburger Drawer</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Fluid morphing toggle & drawer</span>
                   </div>
                 </a>
-                <a href="#pill-demo" class="flex items-center gap-3 p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-150 group" role="menuitem">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+                <a href="#pill-demo" class="flex items-center gap-3 p-2.5 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all duration-150 group" role="menuitem">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 group-hover:scale-110 transition-transform">
                     <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-1 4a1 1 0 012 0v4.586l2.707 2.707a1 1 0 01-1.414 1.414l-3-3A1 1 0 019 11V6z"/></svg>
                   </div>
                   <div class="flex flex-col">
-                    <span class="text-sm font-semibold text-slate-100">Sliding Indicator</span>
-                    <span class="text-xs text-slate-400">Hardware-accelerated pill kinematics</span>
+                    <span class="text-sm font-semibold text-slate-900 dark:text-slate-100">Sliding Indicator</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Hardware-accelerated pill kinematics</span>
                   </div>
                 </a>
-                <a href="#scrollspy-demo" class="flex items-center gap-3 p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-150 group" role="menuitem">
-                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 text-cyan-400 group-hover:scale-110 transition-transform">
+                <a href="#scrollspy-demo" class="flex items-center gap-3 p-2.5 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all duration-150 group" role="menuitem">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 text-cyan-500 dark:text-cyan-400 group-hover:scale-110 transition-transform">
                     <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
                   </div>
                   <div class="flex flex-col">
-                    <span class="text-sm font-semibold text-slate-100">Scrollspy Detection</span>
-                    <span class="text-xs text-slate-400">Auto-tracking viewport active section</span>
+                    <span class="text-sm font-semibold text-slate-900 dark:text-slate-100">Scrollspy Detection</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400">Auto-tracking viewport active section</span>
                   </div>
                 </a>
               </div>
             </li>
 
             <li role="none">
-              <a href="#playground" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150" role="menuitem" data-nav="playground" id="nav-link-playground">
+              <a href="#playground" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors duration-150" role="menuitem" data-nav="playground" id="nav-link-playground">
                 <span>Playground</span>
                 <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-cyan-500 text-slate-950">Live</span>
               </a>
             </li>
             <li role="none">
-              <a href="#architecture" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150" role="menuitem" data-nav="architecture" id="nav-link-architecture">
+              <a href="#architecture" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors duration-150" role="menuitem" data-nav="architecture" id="nav-link-architecture">
                 <span>Architecture</span>
               </a>
             </li>
             <li role="none">
-              <a href="#contact" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-white transition-colors duration-150" role="menuitem" data-nav="contact" id="nav-link-contact">
+              <a href="#contact" class="nav-link inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white transition-colors duration-150" role="menuitem" data-nav="contact" id="nav-link-contact">
                 <span>Overview</span>
               </a>
             </li>
@@ -263,8 +300,9 @@
         <!-- Action Buttons (Theme Toggle, Layout Toggle, CTA & Mobile Hamburger) -->
         <div class="flex items-center gap-2 md:gap-3">
           <!-- Theme Toggle Button -->
-          <button type="button" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all hover:scale-105 relative overflow-hidden" id="theme-toggle-btn" aria-label="Toggle Dark and Light mode" title="Toggle Theme">
-            <svg class="sun-icon w-4 h-4 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button type="button" class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-all hover:scale-105 relative overflow-hidden" id="theme-toggle-btn" aria-label="Toggle Dark and Light mode" title="Toggle Theme">
+            <!-- Sun Icon (visible in dark mode) -->
+            <svg class="sun-icon w-4 h-4 transition-transform duration-300 hidden dark:block text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -275,10 +313,14 @@
               <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
+            <!-- Moon Icon (visible in light mode) -->
+            <svg class="moon-icon w-4 h-4 transition-transform duration-300 block dark:hidden text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
           </button>
 
           <!-- Interactive Layout Style Toggle (Floating Island / Full Width) -->
-          <button type="button" class="hidden md:inline-flex w-10 h-10 rounded-full items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all hover:scale-105" id="layout-toggle-btn" aria-label="Toggle Navbar Layout Style" title="Toggle Floating / Full Nav">
+          <button type="button" class="hidden md:inline-flex w-10 h-10 rounded-full items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-all hover:scale-105" id="layout-toggle-btn" aria-label="Toggle Navbar Layout Style" title="Toggle Floating / Full Nav">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
               <line x1="3" y1="9" x2="21" y2="9"></line>
@@ -295,7 +337,7 @@
           </a>
 
           <!-- Mobile Hamburger Toggle Button -->
-          <button type="button" class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 relative z-50 transition-colors" id="hamburger-btn" aria-label="Toggle navigation drawer" aria-expanded="false" aria-controls="mobile-drawer">
+          <button type="button" class="md:hidden w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 relative z-50 transition-colors" id="hamburger-btn" aria-label="Toggle navigation drawer" aria-expanded="false" aria-controls="mobile-drawer">
             <span class="w-5 h-4 relative flex flex-col justify-between">
               <span class="hamburger-bar bar-1 w-full h-0.5 bg-current rounded-full transition-all duration-300"></span>
               <span class="hamburger-bar bar-2 w-full h-0.5 bg-current rounded-full transition-all duration-200"></span>
@@ -311,13 +353,13 @@
   <!-- ==============================================
        MOBILE NAVIGATION DRAWER & BACKDROP OVERLAY
        ============================================== -->
-  <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-40 opacity-0 pointer-events-none transition-opacity duration-300" id="nav-backdrop" aria-hidden="true"></div>
+  <div class="fixed inset-0 bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-md z-40 opacity-0 pointer-events-none transition-opacity duration-300" id="nav-backdrop" aria-hidden="true"></div>
 
-  <aside class="fixed top-0 right-0 w-80 max-w-[85vw] h-full h-dvh bg-slate-900 dark:bg-slate-950 border-l border-white/10 shadow-2xl z-50 translate-x-full transition-transform duration-500 ease-out flex flex-col" id="mobile-drawer" aria-label="Mobile Navigation Menu" aria-hidden="true">
+  <aside class="fixed top-0 right-0 w-80 max-w-[85vw] h-full h-dvh bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-white/10 shadow-2xl z-50 translate-x-full transition-transform duration-500 ease-out flex flex-col" id="mobile-drawer" aria-label="Mobile Navigation Menu" aria-hidden="true">
     <div class="flex flex-col h-full overflow-y-auto p-6">
       
       <!-- Drawer Top Bar -->
-      <div class="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+      <div class="flex items-center justify-between pb-6 border-b border-slate-200 dark:border-white/10 mb-6">
         <div class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30">
             <svg class="w-4 h-4" viewBox="0 0 32 32" fill="none">
@@ -331,10 +373,10 @@
               </defs>
             </svg>
           </div>
-          <span class="font-display font-bold text-lg text-slate-100">Nexus<span class="text-cyan-400">Nav</span></span>
+          <span class="font-display font-bold text-lg text-slate-900 dark:text-slate-100">Nexus<span class="text-cyan-500 dark:text-cyan-400">Nav</span></span>
         </div>
 
-        <button type="button" class="w-9 h-9 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:rotate-90 transition-all duration-200" id="drawer-close-btn" aria-label="Close navigation menu">
+        <button type="button" class="w-9 h-9 rounded-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white hover:rotate-90 transition-all duration-200" id="drawer-close-btn" aria-label="Close navigation menu">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -346,14 +388,14 @@
       <nav class="flex-1">
         <ul class="flex flex-col gap-1.5" id="drawer-links">
           <li class="drawer-item" style="--stagger-index: 1;">
-            <a href="#home" class="drawer-link active flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="home">
+            <a href="#home" class="drawer-link active flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="home">
               <svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
               <span>Home</span>
             </a>
           </li>
 
           <li class="drawer-item" style="--stagger-index: 2;">
-            <a href="#features" class="drawer-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="features">
+            <a href="#features" class="drawer-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="features">
               <svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               <span>Features</span>
             </a>
@@ -361,7 +403,7 @@
 
           <!-- Mobile Accordion Submenu -->
           <li class="drawer-item drawer-accordion flex flex-col" style="--stagger-index: 3;">
-            <button type="button" class="drawer-link accordion-toggle flex items-center justify-between px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium w-full text-left" id="mobile-accordion-btn" aria-expanded="false" aria-controls="mobile-submenu">
+            <button type="button" class="drawer-link accordion-toggle flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all text-sm font-medium w-full text-left" id="mobile-accordion-btn" aria-expanded="false" aria-controls="mobile-submenu">
               <div class="flex items-center gap-3">
                 <svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                 <span>Modules</span>
@@ -372,24 +414,24 @@
             </button>
             <div class="accordion-content grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 overflow-hidden" id="mobile-submenu">
               <div class="min-h-0 pl-11 pr-2 pt-2 flex flex-col gap-1">
-                <a href="#drawer-demo" class="drawer-sublink flex items-center justify-between py-2 px-3 rounded-lg text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                <a href="#drawer-demo" class="drawer-sublink flex items-center justify-between py-2 px-3 rounded-lg text-xs text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all">
                   <span>Hamburger Drawer</span>
-                  <span class="font-mono text-[10px] text-cyan-400">CSS Transition</span>
+                  <span class="font-mono text-[10px] text-cyan-600 dark:text-cyan-400">CSS Transition</span>
                 </a>
-                <a href="#pill-demo" class="drawer-sublink flex items-center justify-between py-2 px-3 rounded-lg text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                <a href="#pill-demo" class="drawer-sublink flex items-center justify-between py-2 px-3 rounded-lg text-xs text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all">
                   <span>Sliding Pill</span>
-                  <span class="font-mono text-[10px] text-cyan-400">DOM Transform</span>
+                  <span class="font-mono text-[10px] text-cyan-600 dark:text-cyan-400">DOM Transform</span>
                 </a>
-                <a href="#scrollspy-demo" class="drawer-sublink flex items-center justify-between py-2 px-3 rounded-lg text-xs text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                <a href="#scrollspy-demo" class="drawer-sublink flex items-center justify-between py-2 px-3 rounded-lg text-xs text-slate-500 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-white dark:hover:bg-white/5 transition-all">
                   <span>Scrollspy</span>
-                  <span class="font-mono text-[10px] text-cyan-400">Intersection</span>
+                  <span class="font-mono text-[10px] text-cyan-600 dark:text-cyan-400">Intersection</span>
                 </a>
               </div>
             </div>
           </li>
 
           <li class="drawer-item" style="--stagger-index: 4;">
-            <a href="#playground" class="drawer-link flex items-center justify-between px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="playground">
+            <a href="#playground" class="drawer-link flex items-center justify-between px-4 py-3 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="playground">
               <div class="flex items-center gap-3">
                 <svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 <span>Playground</span>
@@ -399,14 +441,14 @@
           </li>
 
           <li class="drawer-item" style="--stagger-index: 5;">
-            <a href="#architecture" class="drawer-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="architecture">
+            <a href="#architecture" class="drawer-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="architecture">
               <svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
               <span>Architecture</span>
             </a>
           </li>
 
           <li class="drawer-item" style="--stagger-index: 6;">
-            <a href="#contact" class="drawer-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="contact">
+            <a href="#contact" class="drawer-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:text-slate-950 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-white/5 transition-all text-sm font-medium" data-drawer-nav="contact">
               <svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
               <span>Overview</span>
             </a>
@@ -415,12 +457,12 @@
       </nav>
 
       <!-- Drawer Footer Controls -->
-      <div class="pt-6 border-t border-white/10 flex flex-col gap-4 mt-auto">
-        <div class="flex items-center justify-between text-xs text-slate-400">
+      <div class="pt-6 border-t border-slate-200 dark:border-white/10 flex flex-col gap-4 mt-auto">
+        <div class="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400">
           <span>Appearance</span>
-          <div class="inline-flex p-1 bg-slate-800/80 rounded-full border border-white/10" id="mobile-theme-pill">
-            <button type="button" class="pill-option active px-3 py-1 rounded-full text-xs font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-blue-500" data-theme-val="dark">Dark</button>
-            <button type="button" class="pill-option px-3 py-1 rounded-full text-xs font-semibold text-slate-400 hover:text-white" data-theme-val="light">Light</button>
+          <div class="inline-flex p-1 bg-slate-100 dark:bg-slate-800/80 rounded-full border border-slate-200 dark:border-white/10" id="mobile-theme-pill">
+            <button type="button" class="pill-option active px-3 py-1 rounded-full text-xs font-semibold" data-theme-val="dark">Dark</button>
+            <button type="button" class="pill-option px-3 py-1 rounded-full text-xs font-semibold" data-theme-val="light">Light</button>
           </div>
         </div>
         <a href="#playground" class="w-full text-center py-2.5 rounded-full font-semibold text-sm bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/25">
@@ -439,26 +481,26 @@
     <!-- HERO SECTION -->
     <section class="relative min-h-[85vh] flex items-center justify-center pt-28 md:pt-36 pb-16 px-4 overflow-hidden" id="home">
       <!-- Ambient Background Glow Orbs -->
-      <div class="absolute -top-24 -right-24 w-96 md:w-[550px] h-96 md:h-[550px] bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 w-96 md:w-[500px] h-96 md:h-[500px] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute -top-24 -right-24 w-96 md:w-[550px] h-96 md:h-[550px] bg-cyan-400/20 dark:bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-96 md:w-[500px] h-96 md:h-[500px] bg-purple-400/20 dark:bg-purple-500/20 rounded-full blur-[120px] pointer-events-none"></div>
       
       <div class="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
         
         <!-- Status Badge -->
-        <div class="hero-status-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs md:text-sm font-medium text-slate-200 shadow-lg shadow-cyan-500/10 mb-6">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400"></span>
+        <div class="hero-status-badge inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 dark:border-cyan-500/30 text-xs md:text-sm font-medium text-slate-700 dark:text-slate-200 shadow-md shadow-cyan-500/10 mb-6">
+          <span class="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 animate-pulse shadow-sm shadow-cyan-400"></span>
           <span class="badge-text">Interactive UI System • Production Ready</span>
-          <span class="badge-tag px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[11px] font-bold uppercase">60 FPS • Accessible</span>
+          <span class="badge-tag px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-[11px] font-bold uppercase">60 FPS • Accessible</span>
         </div>
 
         <!-- Hero Headline -->
-        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-center max-w-4xl tracking-tight mb-5">
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-center max-w-4xl tracking-tight mb-5 text-slate-900 dark:text-slate-100">
           Dynamic Toggle <br>
-          <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Navigation System</span>
+          <span class="bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 dark:from-cyan-400 dark:via-blue-500 dark:to-purple-500 bg-clip-text text-transparent">Navigation System</span>
         </h1>
 
         <!-- Hero Subtitle -->
-        <p class="text-slate-400 max-w-2xl text-base sm:text-lg mb-8 leading-relaxed">
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl text-base sm:text-lg mb-8 leading-relaxed">
           An interactive, mobile-friendly navigation engineered with fluid CSS transforms,
           hamburger open/close drawer transitions, hardware-accelerated sliding indicators,
           and robust DOM manipulation.
@@ -471,38 +513,38 @@
             <span>Trigger Mobile Drawer</span>
           </button>
           
-          <a href="#playground" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm bg-slate-900/80 hover:bg-slate-800/80 border border-white/10 text-white hover:border-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200">
+          <a href="#playground" class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm bg-white hover:bg-slate-100 dark:bg-slate-900/80 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white hover:border-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200 shadow-sm">
             <span>Open Event Inspector</span>
             <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
 
         <!-- Quick Interactive Control Station -->
-        <div class="w-full max-w-3xl mx-auto p-5 md:p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 shadow-2xl">
-          <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4 flex-wrap gap-2 text-left">
-            <span class="font-display font-semibold text-sm text-slate-200">Interactive Navigation Controls</span>
-            <span class="text-xs text-slate-400">Click any button to trigger DOM & transition states</span>
+        <div class="w-full max-w-3xl mx-auto p-5 md:p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-2xl">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10 mb-4 flex-wrap gap-2 text-left">
+            <span class="font-display font-semibold text-sm text-slate-800 dark:text-slate-200">Interactive Navigation Controls</span>
+            <span class="text-xs text-slate-500 dark:text-slate-400">Click any button to trigger DOM & transition states</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <button type="button" class="p-3.5 rounded-xl bg-slate-950/60 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1" id="quick-toggle-nav">
+            <button type="button" class="p-3.5 rounded-xl bg-slate-50 hover:bg-cyan-500/10 border border-slate-200/80 hover:border-cyan-500/30 dark:bg-slate-950/60 dark:hover:bg-cyan-500/10 dark:border-white/5 dark:hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1 shadow-sm" id="quick-toggle-nav">
               <span class="text-xl">🍔</span>
-              <span class="text-xs text-slate-300 font-medium">Toggle Menu</span>
-              <span class="text-[11px] font-mono text-cyan-400 font-semibold" id="quick-menu-status">Closed</span>
+              <span class="text-xs text-slate-700 dark:text-slate-300 font-medium">Toggle Menu</span>
+              <span class="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold" id="quick-menu-status">Closed</span>
             </button>
-            <button type="button" class="p-3.5 rounded-xl bg-slate-950/60 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1" id="quick-toggle-layout">
+            <button type="button" class="p-3.5 rounded-xl bg-slate-50 hover:bg-cyan-500/10 border border-slate-200/80 hover:border-cyan-500/30 dark:bg-slate-950/60 dark:hover:bg-cyan-500/10 dark:border-white/5 dark:hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1 shadow-sm" id="quick-toggle-layout">
               <span class="text-xl">📐</span>
-              <span class="text-xs text-slate-300 font-medium">Navbar Style</span>
-              <span class="text-[11px] font-mono text-cyan-400 font-semibold" id="quick-layout-status">Floating</span>
+              <span class="text-xs text-slate-700 dark:text-slate-300 font-medium">Navbar Style</span>
+              <span class="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold" id="quick-layout-status">Floating</span>
             </button>
-            <button type="button" class="p-3.5 rounded-xl bg-slate-950/60 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1" id="quick-toggle-theme">
+            <button type="button" class="p-3.5 rounded-xl bg-slate-50 hover:bg-cyan-500/10 border border-slate-200/80 hover:border-cyan-500/30 dark:bg-slate-950/60 dark:hover:bg-cyan-500/10 dark:border-white/5 dark:hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1 shadow-sm" id="quick-toggle-theme">
               <span class="text-xl">🌓</span>
-              <span class="text-xs text-slate-300 font-medium">Theme</span>
-              <span class="text-[11px] font-mono text-cyan-400 font-semibold" id="quick-theme-status">Dark</span>
+              <span class="text-xs text-slate-700 dark:text-slate-300 font-medium">Theme</span>
+              <span class="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold" id="quick-theme-status">Dark</span>
             </button>
-            <button type="button" class="p-3.5 rounded-xl bg-slate-950/60 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1" id="quick-scroll-features">
+            <button type="button" class="p-3.5 rounded-xl bg-slate-50 hover:bg-cyan-500/10 border border-slate-200/80 hover:border-cyan-500/30 dark:bg-slate-950/60 dark:hover:bg-cyan-500/10 dark:border-white/5 dark:hover:border-cyan-500/30 flex flex-col items-center gap-1 transition-all hover:-translate-y-1 shadow-sm" id="quick-scroll-features">
               <span class="text-xl">⚡</span>
-              <span class="text-xs text-slate-300 font-medium">Jump to Section</span>
-              <span class="text-[11px] font-mono text-cyan-400 font-semibold">Features &darr;</span>
+              <span class="text-xs text-slate-700 dark:text-slate-300 font-medium">Jump to Section</span>
+              <span class="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 font-semibold">Features &darr;</span>
             </button>
           </div>
         </div>
@@ -514,9 +556,9 @@
     <section class="py-20 px-4 max-w-6xl mx-auto" id="features">
       
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 block mb-2">Core Specifications</span>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-100 tracking-tight mb-3">Engineered for Seamless Interaction</h2>
-        <p class="text-slate-400 text-sm sm:text-base">
+        <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 block mb-2">Core Specifications</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-slate-100 tracking-tight mb-3">Engineered for Seamless Interaction</h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
           Optimized for intuitive user engagement, responsive cross-device consistency, and lightweight performance.
         </p>
       </div>
@@ -524,77 +566,77 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
         <!-- Feature 1: Toggle Animations -->
-        <article class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col" id="drawer-demo">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 mb-5">
+        <article class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col" id="drawer-demo">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 dark:text-cyan-400 mb-5">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
             </svg>
           </div>
-          <h3 class="font-display font-bold text-lg text-slate-100 mb-2">Open/Close Toggle Animations</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4 flex-1">
+          <h3 class="font-display font-bold text-lg text-slate-900 dark:text-slate-100 mb-2">Open/Close Toggle Animations</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-1">
             Three-bar hamburger smoothly morphs into an 'X' using precise 3D rotational transforms and cubic-bezier spring easing.
           </p>
-          <div class="mt-auto flex items-center gap-3 p-3 rounded-xl bg-slate-950/80 border border-white/5">
+          <div class="mt-auto flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-white/5">
             <div class="w-7 h-5 relative flex flex-col justify-between shrink-0" id="interactive-hamburger-preview">
-              <div class="bar-1 w-full h-0.5 bg-cyan-400 rounded-full transition-all duration-300"></div>
-              <div class="bar-2 w-full h-0.5 bg-cyan-400 rounded-full transition-all duration-200"></div>
-              <div class="bar-3 w-full h-0.5 bg-cyan-400 rounded-full transition-all duration-300"></div>
+              <div class="bar-1 w-full h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full transition-all duration-300"></div>
+              <div class="bar-2 w-full h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full transition-all duration-200"></div>
+              <div class="bar-3 w-full h-0.5 bg-cyan-500 dark:bg-cyan-400 rounded-full transition-all duration-300"></div>
             </div>
-            <button type="button" class="text-xs font-semibold text-slate-200 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 px-3 py-1.5 rounded-lg transition-colors" id="test-morph-btn">Toggle Morph</button>
+            <button type="button" class="text-xs font-semibold text-cyan-700 dark:text-slate-200 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 px-3 py-1.5 rounded-lg transition-colors" id="test-morph-btn">Toggle Morph</button>
           </div>
         </article>
 
         <!-- Feature 2: Responsive Drawer -->
-        <article class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 mb-5">
+        <article class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 dark:text-cyan-400 mb-5">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
               <line x1="12" y1="18" x2="12.01" y2="18"></line>
             </svg>
           </div>
-          <h3 class="font-display font-bold text-lg text-slate-100 mb-2">Mobile-Friendly Drawer Transitions</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4 flex-1">
+          <h3 class="font-display font-bold text-lg text-slate-900 dark:text-slate-100 mb-2">Mobile-Friendly Drawer Transitions</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-1">
             Hardware-accelerated off-canvas sliding drawer with staggered child element entrance, backdrop blur overlay, and Escape key listeners.
           </p>
           <div class="flex flex-wrap gap-1.5 mt-auto">
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">translateX()</span>
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">backdrop-blur</span>
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Escape Key</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">translateX()</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">backdrop-blur</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">Escape Key</span>
           </div>
         </article>
 
         <!-- Feature 3: Sliding Indicator & Hover -->
-        <article class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col" id="pill-demo">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 mb-5">
+        <article class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col" id="pill-demo">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 dark:text-cyan-400 mb-5">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
             </svg>
           </div>
-          <h3 class="font-display font-bold text-lg text-slate-100 mb-2">Interactive Links & Active States</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4 flex-1">
+          <h3 class="font-display font-bold text-lg text-slate-900 dark:text-slate-100 mb-2">Interactive Links & Active States</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-1">
             Fluid sliding pill indicator tracks cursor hover and active navigation items using bounding client rect dimensions and CSS transform interpolation.
           </p>
           <div class="flex flex-wrap gap-1.5 mt-auto">
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">getBoundingClientRect</span>
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Hover States</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">getBoundingClientRect</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">Hover States</span>
           </div>
         </article>
 
         <!-- Feature 4: Scrollspy Detection -->
-        <article class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col" id="scrollspy-demo">
-          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 mb-5">
+        <article class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col" id="scrollspy-demo">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-cyan-500/10 border border-cyan-500/30 text-cyan-500 dark:text-cyan-400 mb-5">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 14 14"></polyline>
             </svg>
           </div>
-          <h3 class="font-display font-bold text-lg text-slate-100 mb-2">Scrollspy & Sticky Dynamic Navbar</h3>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4 flex-1">
+          <h3 class="font-display font-bold text-lg text-slate-900 dark:text-slate-100 mb-2">Scrollspy & Sticky Dynamic Navbar</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4 flex-1">
             Automatically highlights corresponding navigation links as the user scrolls through page sections, while subtly compacting the navbar header on scroll.
           </p>
           <div class="flex flex-wrap gap-1.5 mt-auto">
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Scroll Event</span>
-            <span class="font-mono text-[10px] px-2 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Sticky Header</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">Scroll Event</span>
+            <span class="font-mono text-[10px] px-2 py-1 rounded bg-slate-100 border border-slate-200 text-slate-600 dark:bg-white/5 dark:border-white/10 dark:text-slate-300">Sticky Header</span>
           </div>
         </article>
 
@@ -605,9 +647,9 @@
     <section class="py-20 px-4 max-w-6xl mx-auto" id="playground">
       
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 block mb-2">Interactive Sandbox</span>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-100 tracking-tight mb-3">Live DOM & Event Inspector</h2>
-        <p class="text-slate-400 text-sm sm:text-base">
+        <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 block mb-2">Interactive Sandbox</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-slate-100 tracking-tight mb-3">Live DOM & Event Inspector</h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
           Witness event listeners, DOM mutations, and CSS transitions execute in real time.
         </p>
       </div>
@@ -636,45 +678,45 @@
         </div>
 
         <!-- Interactive Simulator & State Controls -->
-        <div class="lg:col-span-5 p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col justify-between">
+        <div class="lg:col-span-5 p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 shadow-xl shadow-slate-200/40 dark:shadow-2xl flex flex-col justify-between">
           <div>
-            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-5">
-              <h3 class="font-display font-bold text-base text-slate-100">Live State Monitor</h3>
-              <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30" id="live-state-badge">Navbar: Default</span>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10 mb-5">
+              <h3 class="font-display font-bold text-base text-slate-900 dark:text-slate-100">Live State Monitor</h3>
+              <span class="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 font-semibold" id="live-state-badge">Navbar: Default</span>
             </div>
 
             <div class="flex flex-col gap-2 mb-6">
-              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-950/60 text-xs">
-                <span class="text-slate-400">Mobile Drawer Open:</span>
-                <span class="font-mono font-semibold text-cyan-400" id="state-drawer-open">false</span>
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-transparent text-xs">
+                <span class="text-slate-600 dark:text-slate-400">Mobile Drawer Open:</span>
+                <span class="font-mono font-semibold text-cyan-600 dark:text-cyan-400" id="state-drawer-open">false</span>
               </div>
-              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-950/60 text-xs">
-                <span class="text-slate-400">Hamburger aria-expanded:</span>
-                <span class="font-mono font-semibold text-cyan-400" id="state-aria-expanded">false</span>
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-transparent text-xs">
+                <span class="text-slate-600 dark:text-slate-400">Hamburger aria-expanded:</span>
+                <span class="font-mono font-semibold text-cyan-600 dark:text-cyan-400" id="state-aria-expanded">false</span>
               </div>
-              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-950/60 text-xs">
-                <span class="text-slate-400">Current Active Link:</span>
-                <span class="font-mono font-semibold text-cyan-400" id="state-active-link">home</span>
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-transparent text-xs">
+                <span class="text-slate-600 dark:text-slate-400">Current Active Link:</span>
+                <span class="font-mono font-semibold text-cyan-600 dark:text-cyan-400" id="state-active-link">home</span>
               </div>
-              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-950/60 text-xs">
-                <span class="text-slate-400">Navbar Scrolled State:</span>
-                <span class="font-mono font-semibold text-cyan-400" id="state-scrolled">false</span>
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-transparent text-xs">
+                <span class="text-slate-600 dark:text-slate-400">Navbar Scrolled State:</span>
+                <span class="font-mono font-semibold text-cyan-600 dark:text-cyan-400" id="state-scrolled">false</span>
               </div>
-              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-950/60 text-xs">
-                <span class="text-slate-400">Active Theme:</span>
-                <span class="font-mono font-semibold text-cyan-400" id="state-theme">dark</span>
+              <div class="flex justify-between items-center p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-transparent text-xs">
+                <span class="text-slate-600 dark:text-slate-400">Active Theme:</span>
+                <span class="font-mono font-semibold text-cyan-600 dark:text-cyan-400" id="state-theme">dark</span>
               </div>
             </div>
           </div>
 
           <div class="flex gap-2 flex-wrap">
-            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/40 text-slate-200 transition-colors" id="btn-simulate-mobile">
+            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-cyan-400/40 text-slate-700 dark:text-slate-200 transition-colors shadow-sm" id="btn-simulate-mobile">
               📱 Open Drawer
             </button>
-            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/40 text-slate-200 transition-colors" id="btn-toggle-dropdown-sim">
+            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-cyan-400/40 text-slate-700 dark:text-slate-200 transition-colors shadow-sm" id="btn-toggle-dropdown-sim">
               📂 Toggle Dropdown
             </button>
-            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/40 text-slate-200 transition-colors" id="btn-cycle-nav-sim">
+            <button type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-cyan-400/40 text-slate-700 dark:text-slate-200 transition-colors shadow-sm" id="btn-cycle-nav-sim">
               🔄 Cycle Active Link
             </button>
           </div>
@@ -687,72 +729,72 @@
     <section class="py-20 px-4 max-w-6xl mx-auto" id="architecture">
       
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 block mb-2">Engineering Foundation</span>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-100 tracking-tight mb-3">Core Architecture & Principles</h2>
-        <p class="text-slate-400 text-sm sm:text-base">
+        <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 block mb-2">Engineering Foundation</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-slate-100 tracking-tight mb-3">Core Architecture & Principles</h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
           Designed with industry-standard engineering practices, lightweight execution, and clean DOM interfaces.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <div class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
+        <div class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
           <div class="flex items-center gap-3 mb-4">
-            <span class="font-mono text-xs font-bold text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">01</span>
-            <h3 class="font-display font-bold text-base text-slate-100">Event Engine</h3>
+            <span class="font-mono text-xs font-bold text-cyan-600 dark:text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">01</span>
+            <h3 class="font-display font-bold text-base text-slate-900 dark:text-slate-100">Event Engine</h3>
           </div>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
             Handling <code>click</code>, <code>scroll</code>, <code>keydown</code>, <code>resize</code>, and <code>mouseenter/mouseleave</code> with zero unnecessary repaints and RAF throttling.
           </p>
-          <ul class="text-xs text-slate-400 flex flex-col gap-2 mt-auto">
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> WCAG compliant Escape key</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Backdrop outside click dismiss</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Throttled scroll synchronization</li>
+          <ul class="text-xs text-slate-600 dark:text-slate-400 flex flex-col gap-2 mt-auto">
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> WCAG compliant Escape key</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Backdrop outside click dismiss</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Throttled scroll synchronization</li>
           </ul>
         </div>
 
-        <div class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
+        <div class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
           <div class="flex items-center gap-3 mb-4">
-            <span class="font-mono text-xs font-bold text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">02</span>
-            <h3 class="font-display font-bold text-base text-slate-100">Fluid Transitions</h3>
+            <span class="font-mono text-xs font-bold text-cyan-600 dark:text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">02</span>
+            <h3 class="font-display font-bold text-base text-slate-900 dark:text-slate-100">Fluid Transitions</h3>
           </div>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
             GPU-accelerated transforms and opacity with tailored cubic-bezier curves ensuring smooth 60 FPS feedback across all viewports.
           </p>
-          <ul class="text-xs text-slate-400 flex flex-col gap-2 mt-auto">
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Staggered entrance delays</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Morphing hamburger vector</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Kinematic sliding indicator pill</li>
+          <ul class="text-xs text-slate-600 dark:text-slate-400 flex flex-col gap-2 mt-auto">
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Staggered entrance delays</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Morphing hamburger vector</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Kinematic sliding indicator pill</li>
           </ul>
         </div>
 
-        <div class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
+        <div class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
           <div class="flex items-center gap-3 mb-4">
-            <span class="font-mono text-xs font-bold text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">03</span>
-            <h3 class="font-display font-bold text-base text-slate-100">Responsive Layouts</h3>
+            <span class="font-mono text-xs font-bold text-cyan-600 dark:text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">03</span>
+            <h3 class="font-display font-bold text-base text-slate-900 dark:text-slate-100">Responsive Layouts</h3>
           </div>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
             Adaptive layout transitions between floating island desktop navigation and touch-optimized off-canvas mobile drawer with zero viewport clipping.
           </p>
-          <ul class="text-xs text-slate-400 flex flex-col gap-2 mt-auto">
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Mobile-first responsive CSS</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Body scroll locking during active drawer</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Viewport resize handling</li>
+          <ul class="text-xs text-slate-600 dark:text-slate-400 flex flex-col gap-2 mt-auto">
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Mobile-first responsive CSS</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Body scroll locking during active drawer</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Viewport resize handling</li>
           </ul>
         </div>
 
-        <div class="p-6 rounded-2xl bg-slate-900/60 dark:bg-slate-900/70 backdrop-blur-xl border border-white/10 hover:border-cyan-500/40 shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
+        <div class="p-6 rounded-2xl bg-white/80 dark:bg-slate-900/70 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 hover:border-cyan-500/40 shadow-lg shadow-slate-200/40 dark:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col">
           <div class="flex items-center gap-3 mb-4">
-            <span class="font-mono text-xs font-bold text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">04</span>
-            <h3 class="font-display font-bold text-base text-slate-100">DOM Synchronization</h3>
+            <span class="font-mono text-xs font-bold text-cyan-600 dark:text-cyan-400 w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">04</span>
+            <h3 class="font-display font-bold text-base text-slate-900 dark:text-slate-100">DOM Synchronization</h3>
           </div>
-          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
             Unified state model managing ARIA accessibility attributes, scrollspy tracking, and theme preferences.
           </p>
-          <ul class="text-xs text-slate-400 flex flex-col gap-2 mt-auto">
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Real-time ARIA state management</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Dynamic bounding rect tracking</li>
-            <li class="flex items-center gap-2"><span class="text-cyan-400 font-bold">✓</span> Zero runtime dependencies</li>
+          <ul class="text-xs text-slate-600 dark:text-slate-400 flex flex-col gap-2 mt-auto">
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Real-time ARIA state management</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Dynamic bounding rect tracking</li>
+            <li class="flex items-center gap-2"><span class="text-cyan-600 dark:text-cyan-400 font-bold">✓</span> Zero runtime dependencies</li>
           </ul>
         </div>
 
@@ -761,17 +803,17 @@
 
     <!-- CALL TO ACTION / OVERVIEW SECTION -->
     <section class="py-20 px-4 max-w-5xl mx-auto" id="contact">
-      <div class="p-10 md:p-14 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 border border-cyan-500/30 text-center shadow-2xl shadow-cyan-500/10">
-        <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 block mb-2">Production Ready</span>
-        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-100 tracking-tight mb-4">Ready for Seamless Integration</h2>
-        <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
+      <div class="p-10 md:p-14 rounded-3xl bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 border border-cyan-500/30 text-center shadow-xl shadow-cyan-500/10">
+        <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 block mb-2">Production Ready</span>
+        <h2 class="font-display font-bold text-3xl sm:text-4xl text-slate-900 dark:text-slate-100 tracking-tight mb-4">Ready for Seamless Integration</h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
           Lightweight, accessible, and completely framework-agnostic. Drop directly into any modern web project, portfolio, or component design system.
         </p>
         <div class="cta-actions flex items-center justify-center gap-4 flex-wrap">
           <a href="#home" class="px-6 py-3 rounded-full font-semibold text-sm bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all" id="back-to-top-btn">
             <span>Back to Top &uarr;</span>
           </a>
-          <a href="#playground" class="px-6 py-3 rounded-full font-semibold text-sm bg-slate-900 hover:bg-slate-800 border border-white/10 text-white hover:border-cyan-500/40 hover:-translate-y-0.5 transition-all">
+          <a href="#playground" class="px-6 py-3 rounded-full font-semibold text-sm bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white hover:border-cyan-500/40 hover:-translate-y-0.5 transition-all shadow-sm">
             <span>Launch Interactive Sandbox</span>
           </a>
         </div>
@@ -783,18 +825,18 @@
   <!-- ==============================================
        SITE FOOTER
        ============================================== -->
-  <footer class="border-t border-white/10 py-10 px-4 bg-slate-950">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+  <footer class="border-t border-slate-200 dark:border-white/10 py-10 px-4 bg-slate-100 dark:bg-slate-950">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600 dark:text-slate-400">
       <div class="flex items-center gap-2">
-        <span class="font-display font-bold text-sm text-slate-200">Nexus<span class="text-cyan-400">Nav</span></span>
+        <span class="font-display font-bold text-sm text-slate-900 dark:text-slate-200">Nexus<span class="text-cyan-500 dark:text-cyan-400">Nav</span></span>
         <span>•</span>
         <span>&copy; 2026 NexusNav UI System • Powered by Tailwind CSS</span>
       </div>
       <div class="flex items-center gap-6">
-        <a href="#home" class="hover:text-cyan-400 transition-colors">Home</a>
-        <a href="#features" class="hover:text-cyan-400 transition-colors">Features</a>
-        <a href="#playground" class="hover:text-cyan-400 transition-colors">Playground</a>
-        <a href="#architecture" class="hover:text-cyan-400 transition-colors">Architecture</a>
+        <a href="#home" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Home</a>
+        <a href="#features" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Features</a>
+        <a href="#playground" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Playground</a>
+        <a href="#architecture" class="hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Architecture</a>
       </div>
     </div>
   </footer>
